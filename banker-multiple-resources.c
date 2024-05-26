@@ -19,7 +19,7 @@ pthread_cond_t condition;
 bool get_safe_sequence();
 void *process_code(void *arg);
 void print_allocation_table();
-void print_vector(int* vector, int n);
+void print_vector(int *vector, int n);
 
 int main(int argc, char const *argv[])
 {
@@ -167,7 +167,7 @@ bool get_safe_sequence()
 
 void *process_code(void *arg)
 {   
-    int pid = *(int*) arg;
+    int pid = *((int*) arg);
 
     pthread_mutex_lock(&lock_resources);
     
@@ -242,16 +242,16 @@ void print_allocation_table()
     {
         printf("   P%d        ", i);
         print_vector(g_allocated[i], g_num_of_resources);
-        printf("     ");
+        printf("      ");
         print_vector(g_max[i], g_num_of_resources);
-        printf("    ");
+        printf("     ");
         print_vector(g_need[i], g_num_of_resources);
         printf("\n");
     }
     printf("\n=========================================\n\n");
 }
 
-void print_vector(int* vector, int n)
+void print_vector(int *vector, int n)
 {
     for (int i = 0; i < n; ++i)
     {

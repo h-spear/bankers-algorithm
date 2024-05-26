@@ -131,7 +131,7 @@ bool get_safe_sequence()
 
 void *process_code(void *arg)
 {
-    int pid = *(int*) arg;
+    int pid = *((int*) arg);
 
     pthread_mutex_lock(&lock_resources);
 
